@@ -19,6 +19,7 @@ opt.clipboard = 'unnamedplus' -- share system clipboard
 local install_path = fn.stdpath('data') .. '/site/pack/paqs/start/paq-nvim'
 local paq_missing = fn.empty(fn.glob(install_path)) > 0
 if paq_missing then
+  print('Cloning Paq...')
   fn.system({'git', 'clone', '--depth=1', 'https://github.com/savq/paq-nvim.git', install_path})
 end
 -- End install of paq-nvim
@@ -49,9 +50,9 @@ local paq = require "paq" {
 
 -- Automatically PaqInstall packages on bootstrap
 if paq_missing then
-  vim.cmd('autocmd User PaqDoneInstall quit')
+  vim.cmd('autocmd User PaqDoneInstall source $MYVIMRC')
   paq.install()
-  fn.confirm('Bootstrapping Paq, installing packages, and exiting automatically when done. Start Neovim again afterwards.')
+  fn.confirm('Bootstrapping Paq and installing packages...')
   return
 end
 -- End PaqInstall packages
