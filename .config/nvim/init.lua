@@ -179,23 +179,24 @@ opt.signcolumn = 'yes'
 -- 300ms of no cursor movement to trigger cursorhold
 opt.updatetime = 300
 -- show diagnostic popup on cursor hover
--- cmd('autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()')
+-- cmd('autocmd CursorHold * lua vim.diagnostic.open_float()')
 
 -- Goto previous/next diagnostic warning/error
-api.nvim_set_keymap('n', 'g[', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', {noremap = true, silent = true})
-api.nvim_set_keymap('n', 'g]', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', {noremap = true, silent = true})
+api.nvim_set_keymap('n', 'g[', '<cmd>lua vim.diagnostic.goto_prev()<CR>', {noremap = true, silent = true})
+api.nvim_set_keymap('n', 'g]', '<cmd>lua vim.diagnostic.goto_next()<CR>', {noremap = true, silent = true})
 
 -- autofmt on save for rust source files
 cmd('autocmd BufWritePre *.rs lua vim.lsp.buf.formatting_sync(nil, 200)')
 
 -- telescope
 require('telescope').setup({})
-api.nvim_set_keymap('n', '<leader>ff', '<cmd>lua require(\'telescope.builtin\').find_files()<cr>', {noremap = true})
-api.nvim_set_keymap('n', '<leader>fg', '<cmd>lua require(\'telescope.builtin\').live_grep()<cr>', {noremap = true})
-api.nvim_set_keymap('n', '<leader>fb', '<cmd>lua require(\'telescope.builtin\').buffers()<cr>', {noremap = true})
-api.nvim_set_keymap('n', '<leader>fh', '<cmd>lua require(\'telescope.builtin\').help_tags()<cr>', {noremap = true})
-api.nvim_set_keymap('n', '<leader>flr', '<cmd>lua require(\'telescope.builtin\').lsp_references()<cr>', {noremap = true})
-api.nvim_set_keymap('n', '<leader>fld', '<cmd>lua require(\'telescope.builtin\').lsp_definitions()<cr>', {noremap = true})
-api.nvim_set_keymap('n', '<leader>flD', '<cmd>lua require(\'telescope.builtin\').lsp_document_diagnostics()<cr>', {noremap = true})
-api.nvim_set_keymap('n', '<leader>fli', '<cmd>lua require(\'telescope.builtin\').lsp_implementations()<cr>', {noremap = true})
+api.nvim_set_keymap('n', '<leader>f', '<cmd>lua require(\'telescope.builtin\').find_files()<cr>', {noremap = true})
+api.nvim_set_keymap('n', '<leader>g', '<cmd>lua require(\'telescope.builtin\').live_grep()<cr>', {noremap = true})
+api.nvim_set_keymap('n', '<leader>b', '<cmd>lua require(\'telescope.builtin\').buffers()<cr>', {noremap = true})
+api.nvim_set_keymap('n', '<leader>h', '<cmd>lua require(\'telescope.builtin\').help_tags()<cr>', {noremap = true})
+api.nvim_set_keymap('n', '<leader>r', '<cmd>lua require(\'telescope.builtin\').lsp_references()<cr>', {noremap = true})
+api.nvim_set_keymap('n', '<leader>d', '<cmd>lua require(\'telescope.builtin\').lsp_definitions()<cr>', {noremap = true})
+api.nvim_set_keymap('n', '<leader>D', '<cmd>lua require(\'telescope.builtin\').lsp_document_diagnostics()<cr>', {noremap = true})
+api.nvim_set_keymap('n', '<leader>i', '<cmd>lua require(\'telescope.builtin\').lsp_implementations()<cr>', {noremap = true})
+api.nvim_set_keymap('n', '<leader>t', '<cmd>lua require(\'telescope.builtin\').lsp_type_definitions()<cr>', {noremap = true})
 
